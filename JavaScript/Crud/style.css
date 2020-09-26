@@ -1,0 +1,25 @@
+.title1 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.deleteButton {
+  color: white;
+  font-weight: bold;
+  background-color: darkred;
+  margin-right: 10px;
+  border-radius: 50%;
+}

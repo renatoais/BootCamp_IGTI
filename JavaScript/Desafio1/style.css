@@ -1,0 +1,30 @@
+.input {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border: 1px solid gray;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  margin-left: 500px;
+  margin-right: 500px;
+}
+
+.text-input {
+  width: 50px;
+}
+
+.obj {
+  flex-direction: column;
+  padding: 0px;
+  border: 2px solid;
+  margin-right: 800px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  width: 450px;
+  margin: auto;
+  padding: 50px;
+  text-align: center;
+  border-radius: 200px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <title>Desafio 1</title>
+  </head>
+  <body>
+    <form>
+      <div class="input">
+        <table border="0">
+          <tr>
+            <td>(R) Vermelho</td>
+            <td><input type="range" min="0" max="255" id="red" /></td>
+            <td>
+              <input type="text" id="txtred" disabled class="text-input" />
+            </td>
+          </tr>
+          <tr>
+            <td>(G) Green</td>
+            <td>
+              <input type="range" min="0" max="255" id="green" />
+            </td>
+            <td>
+              <input type="text" id="txtgreen" disabled class="text-input" />
+            </td>
+          </tr>
+          <tr>
+            <td>(B) Blue</td>
+            <td>
+              <input type="range" min="0" max="255" id="blue" />
+            </td>
+            <td>
+              <input type="text" id="txtblue" disabled class="text-input" />
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="obj" id="objcolor"></div>
+      <script src="./script.js"></script>
+    </form>
+  </body>
+</html>
