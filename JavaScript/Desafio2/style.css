@@ -54,3 +54,7 @@ h1 {
   margin-right: 15rem;
   margin-left: 5rem;
 }
+
+button {
+  display: block;
+}
