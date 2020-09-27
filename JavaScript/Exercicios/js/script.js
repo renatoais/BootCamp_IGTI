@@ -16,7 +16,7 @@ window.addEventListener("load", () => {
   tabCountries = document.querySelector("#tabCountries");
   tabFavorites = document.querySelector("#tabFavorites");
   countCountries = document.querySelector("#countCountries");
-  countFavorites = document.querySelector("#tabCountries");
+  countFavorites = document.querySelector("#countFavorites");
   totalPopulationList = document.querySelector("#totalPopulationList");
   totalPorpulationFavorites = document.querySelector(
     "totalPopulationFavorites"
@@ -39,6 +39,7 @@ async function fetchCountries() {
       id: country.numericCode,
       name: country.translations.pt,
       formattedPopulation: formatNumber(country.population),
+      population: country.population,
       flag: country.flag,
       capital: country.capital,
       continente: country.region,
@@ -135,16 +136,62 @@ function renderFavorites() {
 
 function renderSummary() {
   countCountries.textContent = allCountries.length;
-  // countFavorites.textContent = favoriteCountries.length;
+  countFavorites.textContent = favoriteCountries.length;
 
   const totalPopulation = allCountries.reduce((accumulator, current) => {
     return accumulator + current.population;
   }, 0);
 
+  const totalFavorites = favoriteCountries.reduce((accumulator, current) => {
+    return accumulator + current.population;
+  }, 0);
+
   totalPopulationList.textContent = totalPopulation;
+  totalPopulationFavorites.textContent = formatNumber(totalFavorites);
 }
 
-function handleCountryButtons() {}
+function handleCountryButtons() {
+  const countryButtons = Array.from(tabCountries.querySelectorAll(".btn"));
+  const favoriteButtons = Array.from(tabFavorites.querySelectorAll(".btn"));
+
+  countryButtons.forEach((button) => {
+    button.addEventListener("click", () => addToFavorites(button.id));
+  });
+
+  favoriteButtons.forEach((button) => {
+    button.addEventListener("click", () => removeFromFavorites(button.id));
+  });
+}
+
+function addToFavorites(id) {
+  const countryToAdd = allCountries.find((country) => country.id === id);
+
+  favoriteCountries = [...favoriteCountries, countryToAdd];
+
+  favoriteCountries.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  allCountries = allCountries.filter((country) => country.id !== id);
+
+  render();
+}
+
+function removeFromFavorites(id) {
+  const countryToRemove = favoriteCountries.find(
+    (country) => country.id === id
+  );
+
+  allCountries = [...allCountries, countryToRemove];
+
+  allCountries.sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  favoriteCountries = favoriteCountries.filter((country) => country.id !== id);
+
+  render();
+}
 
 function formatNumber(number) {
   return numberFormat.format(number);
