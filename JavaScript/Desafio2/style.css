@@ -86,3 +86,9 @@ img {
   margin-right: 10px;
   display: flex;
 }
+
+#estatistica {
+  text-align: center;
+  margin-right: 5rem;
+  margin-left: 5rem;
+}
