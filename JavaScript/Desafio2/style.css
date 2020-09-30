@@ -91,4 +91,5 @@ img {
   text-align: center;
   margin-right: 5rem;
   margin-left: 5rem;
+  display: flex;
 }
