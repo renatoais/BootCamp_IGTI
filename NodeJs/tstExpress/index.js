@@ -1,4 +1,7 @@
 import express from "express"
+import carrosRouter from "./carrosRouter"
+
+import winston from "winston"
 
 const app =express()
 app.use(express.json())
@@ -71,3 +74,45 @@ app.route("/testRoute")
 .delete((req,res)=>{
   res.send("/testroute DELETe")
 })
+
+
+
+/////usando no roteador
+app.use("/carros",carrosRouter)
+
+
+////tratamento de errro 
+app.use((err,req,res,next)=>{
+  console.log("error1")
+  res.status(500).send("ocorreu um erro ")
+
+})
+
+
+/////usando winston para gravação de logs 
+const {combine,printf,label,timestamp} = winston.format
+
+const myFormat = printf(({level,message,label,timestamp}) => {
+  return `${timestamp} [${label}] ${level} : ${message}`
+})
+
+const logger = winston.createLogger({
+  level :"silly",
+  transports: [
+        new (winston.transports.console)(),
+        new (winston.transports.File)({filename:"my_log.log"})
+  ],
+  format:combine(
+    label({label: "my-app"}),
+    timestamp(),
+    myFormat
+  )
+})
+
+logger.error("error ")
+
+
+//////acessando arquivos estaticos 
+  app.use(express.static("public")) ///public é o nome da pasta 
+  app.use("/images",express.static("public"))
+  
